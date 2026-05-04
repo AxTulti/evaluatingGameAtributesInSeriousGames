@@ -8,3 +8,4 @@ questionary==2.1.1
 six==1.17.0
 tzdata==2026.1
 wcwidth==0.6.0
+rich==13.9.4

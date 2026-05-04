@@ -5,9 +5,13 @@ import pandas as pd
 import numpy as np
 
 
+# # Importante
+# Desiciones del preprocessamiento por verificar:
+#  - Clasificación de columnas
+
 # ### Data Path
 
-DATA_PATH = './data/data.xlsx'
+DATA_PATH = './data/resultados_encuesta.xlsx'
 EXPORT_PATH = './data/cleaned_data.xlsx'
 
 df_raw = pd.read_excel(DATA_PATH)
@@ -19,7 +23,7 @@ df = df_raw.copy()
 # ## Remove Non-numerical Features
 # Since those are only used for segmentation
 
-df = df.iloc[:, 23:50]
+df = df.iloc[:, 4:]
 
 
 df
@@ -69,18 +73,12 @@ normalization_mapping = dict(zip(old_cols, new_cols))
 df.columns = [normalization_mapping.get(c) for c in df.columns]
 
 
-# ## Handling Missing Values TODO
+# ## Handling Missing Values
 
 df.isna().sum()
 
 
-# We will fill missing values with each column's median
-
-df = df.fillna(df.median())
-
-
-df.isna().sum()
-
+# We skip filling missing values, since there are no missing values
 
 # ### Export
 
