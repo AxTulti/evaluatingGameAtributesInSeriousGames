@@ -1,19 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[46]:
-
-
 import pandas as pd
 import numpy as np
 
 
 # ### Data Path
 
-# In[47]:
-
-
 DATA_PATH = './data/data.xlsx'
+EXPORT_PATH = './data/cleaned_data.xlsx'
 
 df_raw = pd.read_excel(DATA_PATH)
 df = df_raw.copy()
@@ -24,13 +19,7 @@ df = df_raw.copy()
 # ## Remove Non-numerical Features
 # Since those are only used for segmentation
 
-# In[48]:
-
-
 df = df.iloc[:, 23:50]
-
-
-# In[49]:
 
 
 df
@@ -57,9 +46,6 @@ df
 # |Mejora del Conocimiento      |Knowledge Improvement|K1             |K2         |
 # |Calificación Global          |Overall              |O1             |—          |
 
-# In[50]:
-
-
 old_cols = list(df.columns)
 new_cols = [
     'CH1', 'CH2',  # Desafío
@@ -80,30 +66,23 @@ new_cols = [
 normalization_mapping = dict(zip(old_cols, new_cols))
 
 
-# In[51]:
-
-
 df.columns = [normalization_mapping.get(c) for c in df.columns]
 
 
 # ## Handling Missing Values TODO
-
-# In[53]:
-
 
 df.isna().sum()
 
 
 # We will fill missing values with each column's median
 
-# In[54]:
-
-
 df = df.fillna(df.median())
 
 
-# In[56]:
-
-
 df.isna().sum()
+
+
+# ### Export
+
+df.to_excel(EXPORT_PATH, index=False, sheet_name='data')
 

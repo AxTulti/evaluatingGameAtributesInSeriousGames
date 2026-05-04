@@ -1,4 +1,4 @@
 @echo off
 
-jupyter nbconvert --to script %1
+jupyter nbconvert --to script --no-prompt %1
 pause
