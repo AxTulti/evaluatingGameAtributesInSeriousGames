@@ -34,7 +34,7 @@ def age_segmentation(df: pd.DataFrame, segments: list) -> pd.DataFrame:
             age_segmented_df["edad"].astype(str).str.strip()
             .isin(segments)
         ]
-
+        
         return age_segmented_df
     except:
         raise RuntimeError("Error al segmentar por edad")

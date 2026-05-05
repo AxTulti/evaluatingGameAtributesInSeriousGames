@@ -24,7 +24,7 @@ def run_segmentation():
         
         if ages:
             df = age_segmentation(df, ages)
-
+   
         # Fase 4
         df_importance, df_scoring = question_segmentation(df)
 
@@ -32,6 +32,7 @@ def run_segmentation():
         export_to_excel(df, df_importance, df_scoring)
         
         return df, df_importance, df_scoring
+    
     except Exception as error:
         print(error)
     finally:
