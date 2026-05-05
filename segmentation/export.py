@@ -8,7 +8,7 @@ def export_to_excel(
     df_complete: pd.DataFrame,
     df_importance: pd.DataFrame,
     df_scoring: pd.DataFrame,
-    output_filename: str = "resultados_encuesta.xlsx"
+    output_filename: str = "respuestas_de_encuesta_segmentados.xlsx"
 ) -> str:
     
     """
