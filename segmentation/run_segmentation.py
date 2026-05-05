@@ -37,4 +37,4 @@ def run_segmentation():
 
 
 if __name__ == "__main__":
-    main()
+    run_segmentation()
