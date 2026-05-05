@@ -11,7 +11,7 @@ def main():
     
     df = run_preprocessing(df)
     
-    run_summary(df)
+    print_df(run_summary(df))
     
     df = run_group(df)
     
