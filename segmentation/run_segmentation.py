@@ -5,7 +5,7 @@ from group import question_segmentation
 from export import export_to_excel
 
 
-def main():
+def run_segmentation():
     try:
         file_path = data_path()
 
