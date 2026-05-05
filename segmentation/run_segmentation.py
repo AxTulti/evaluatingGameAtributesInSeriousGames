@@ -1,8 +1,8 @@
-from clean import load_data, clean_data, normalize_genders
-from cli import data_path, ask_gender_segmentation, ask_age_segmentation
-from segment import gender_segmentation, age_segmentation
-from group import question_segmentation
-from export import export_to_excel
+from .clean import load_data, clean_data, normalize_genders
+from .cli import data_path, ask_gender_segmentation, ask_age_segmentation
+from .segment import gender_segmentation, age_segmentation
+from .group import question_segmentation
+from .export import export_to_excel
 
 
 def run_segmentation():
@@ -30,6 +30,8 @@ def run_segmentation():
 
         # Fase 5
         export_to_excel(df, df_importance, df_scoring)
+        
+        return df, df_importance, df_scoring
     except Exception as error:
         print(error)
     finally:
