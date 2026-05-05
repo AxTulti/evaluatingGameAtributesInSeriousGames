@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import json
 
 ## Standarizing column names
 
@@ -21,29 +22,14 @@ import numpy as np
 # |Calificación Global          |Overall              |O1             |—          |
 
 def run_preprocessing(df):
+    with open('./subattributes.json', 'r', encoding='utf-8') as f:
+        subattributes = json.load(f)
+    
     df = df.iloc[:, 4:]
 
-
     old_cols = list(df.columns)
-
-    new_cols = [
-        'CH1', 'CH2',  # Desafío
-        'F1', 'F2',    # Retroalimentación
-        'I1', 'I2',    # Inmersión
-        'C1', 'C2',    # Concentración
-        'G1', 'G2',    # Claridad de Objetivos
-        'A1', 'A2',    # Autonomía
-        'S1', 'S2',    # Interacción Social
-        'K1', 'K2',    # Mejora del Conocimiento
-        'I3', 'I4',    # Involucramiento Emocional
-        'CH3', 'CH4',  # Equilibrio entre Habilidades y Tareas
-        'I5', 'I6',    # Narrativa Atractiva
-        'CH5', 'CH6',  # Estructura de Progresión
-        'I7', 'I8',    # Animación y Sonido
-        'O1'           # Calificación Global
-    ]
     
-    normalization_mapping = dict(zip(old_cols, new_cols))
+    normalization_mapping = dict(zip(old_cols, subattributes.keys()))
 
     df.columns = [normalization_mapping.get(c) for c in df.columns]
 
