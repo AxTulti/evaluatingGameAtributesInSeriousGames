@@ -47,6 +47,10 @@ def run_linear_programming_iteration(grouped_df: pd.DataFrame) -> dict:
     
     prob += lpSum([B[column] for column in features])  == 1, "Weights_Normality"
     
+    for column in features:
+        prob += B[column] <= 0.5, f'Max_weight_{column}'
+        prob += B[column] >= 0.03, f'Min_weight_{column}'
+    
     for idx, row in df.iterrows():
         prob += lpSum([B[column] * row[column] for column in features]) + Li[idx] - Ei[idx] == row['O1'], f"Restriction_{idx}"
     
