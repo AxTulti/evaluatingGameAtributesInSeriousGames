@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import json
+pd.set_option('future.no_silent_downcasting', True)
 
 def run_summary(input_df: pd.DataFrame) -> pd.DataFrame:
     """
