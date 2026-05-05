@@ -4,7 +4,7 @@ import json
 
 def run_summary(input_df: pd.DataFrame) -> pd.DataFrame:
     """
-    Calcula la media y la desviación estándar para cada atributo numérico.
+    Calcula la media y la desviación estándar para cada Subatributo numérico.
     Diferencia las respuestas por género (Global, Masculino, Femenino).
     """
     
@@ -22,16 +22,16 @@ def run_summary(input_df: pd.DataFrame) -> pd.DataFrame:
     summary_df = summary_df.reset_index()
     
     summary_df.columns = ['Código', 'Media Global', 'Desv. Est. Global']
-    summary_df['Atributo'] = summary_df['Código'].map(subattributes)
+    summary_df['Subatributo'] = summary_df['Código'].map(subattributes)
     
-    cols = ['Atributo', 'Código', 'Media Global', 'Desv. Est. Global']
+    cols = ['Subatributo', 'Código', 'Media Global', 'Desv. Est. Global']
     summary_df = summary_df[cols]
         
     # Redondeamos a 2 decimales
     summary_df = summary_df.round(2)
     
     # Nombramos el índice para que se vea bien al imprimirlo con rich en tables.py
-    summary_df.index.name = 'Atributo'
+    summary_df.index.name = 'Subatributo'
     
     # Rellenar los NaN con "N/A" por si algún grupo no tuvo varianza (ej. un solo encuestado de un género)
     summary_df = summary_df.fillna("N/A")
