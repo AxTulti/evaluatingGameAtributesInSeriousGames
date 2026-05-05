@@ -74,3 +74,20 @@ def run_group(preprocessed_df: pd.DataFrame) -> pd.DataFrame:
     output_df = pd.DataFrame(processed_list)
     
     return output_df
+
+
+if __name__ == "__main__":
+    path = input("Enter the path to your preprocessed Excel file (e.g., data/clean_file.xlsx): ").strip()
+    
+    try:
+        raw_df = pd.read_excel(path)
+        grouped_df = run_group(raw_df)
+        output_name = "../data/grouped_results.xlsx"
+        grouped_df.to_excel(output_name, index=False)
+
+    except FileNotFoundError:
+        print(f"Error: The file at {path} was not found.")
+    except KeyError as e:
+        print(f"Data Error: Missing expected column in the dataset. Column {e} not found.")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
